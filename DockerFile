@@ -1,0 +1,18 @@
+ # базовый образ
+   FROM debian:11
+   
+   # обновляем список пакетов и ставим необходимые
+   RUN apt-get update && \
+       apt-get install -y nginx
+   
+   # стартовая страница
+   ADD index.html /var/www/html/index.html
+   
+   # копируем файл настроек Nginx
+   ADD nginx.conf /etc/nginx/nginx.conf
+   
+   # открываем порт
+   EXPOSE 80
+   
+   # команда запуска
+   CMD ["nginx", "-g", "daemon off;"]
